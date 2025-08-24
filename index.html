@@ -3,52 +3,67 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>🔥Dự báo thời tiết</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <main>
-        <form>
-            <input type="text" id="name" autocomplete="off">
-            <button>
-                <i class="fa-solid fa-magnifying-glass"></i>
-            </button>
-        </form>
-        <section class="result">
+    <div class="top-section">
+        <main>
+            <form>
+                <input type="text" id="name" autocomplete="off" placeholder="Ready to explore? Enter a city name...">
+                <button type="submit">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+            </form>
+            <section class="result">
 
-            <figure class="name">
-                <figcaption>Lo1ndon</figcaption> 
-                <img src="https://flagsapi.com/GB/shiny/32.png">
-            </figure>
+                <figure class="name">
+                    <figcaption>London</figcaption> 
+                    <img src="https://flagsapi.com/GB/shiny/32.png">
+                </figure>
 
-            <figure class="temperature">
-                <img src="https://openweathermap.org/img/wn/10d@4x.png">
-                <figcaption>
-                    <span>31</span>
-                    <sup>o</sup>
-                </figcaption> 
-            </figure>
-            <p class="description">overcast clouds</p>
-            <ul>
-                <li>
-                    <span>clouds</span>
-                    <i class="fa-solid fa-cloud"></i>
-                    <span id="clouds">98</span>%
-                </li>
-                <li>
-                    <span>humidity</span>
-                    <i class="fa-solid fa-droplet"></i>
-                    <span id="humidity">98</span>%
-                </li>
-                <li>
-                    <span>pressure</span>
-                    <i class="fa-solid fa-gauge"></i>
-                    <span id="pressure">1011</span>hPa
-                </li>
-            </ul>
-        </section>
-    </main>
+                <figure class="temperature">
+                    <img src="https://openweathermap.org/img/wn/10d@4x.png">
+                    <figcaption>
+                        <span>31</span>
+                        <sup>o</sup>
+                    </figcaption> 
+                </figure>
+                <p class="description">overcast clouds</p>
+                <ul>
+                    <li title="Cloud Coverage: The percentage of the sky covered by clouds. Low values indicate clear skies, while high values suggest overcast conditions.">
+                        <span>clouds</span>
+                        <i class="fa-solid fa-cloud"></i>
+                        <span id="clouds">98</span>%
+                    </li>
+                    <li title="Humidity: The amount of water vapor present in the air, expressed as a percentage. High humidity can make temperatures feel warmer and may indicate potential for precipitation.">
+                        <span>humidity</span>
+                        <i class="fa-solid fa-droplet"></i>
+                        <span id="humidity">98</span>%
+                    </li>
+                    <li title="Atmospheric Pressure: The force exerted by the weight of air in the atmosphere, measured in hectopascals (hPa). Higher pressure typically indicates fair weather, while lower pressure may suggest storms.">
+                        <span>pressure</span>
+                        <i class="fa-solid fa-gauge"></i>
+                        <span id="pressure">1011</span>hPa
+                    </li>
+                </ul>
+            </section>
+            <!-- Weekly forecast -->
+            <section class="weekly" id="weeklyForecast">
+                <!-- JavaScript will render 7-day forecast cards here -->
+            </section>
+        </main>
+    </div>
+    
+    <div class="bottom-section">
+        <div class="suggestions">
+            <h3>🏙️ View other cities'weather 🌦️</h3>
+            <div class="city-suggestions" id="citySuggestions">
+                <!-- Các thành phố gợi ý sẽ được thêm vào đây bằng JavaScript -->
+            </div>
+        </div>
+    </div>
 
     <script src="app.js"></script>
 </body>

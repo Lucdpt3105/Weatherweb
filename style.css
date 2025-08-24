@@ -1,99 +1,410 @@
 body{
     margin: 0;
-    min-height: 100vh;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    background: #e9e9e9;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    font-family: sans-serif;
+    transition: background-image 0.5s ease-in-out;
+}
+
+/* Mobile body adjustments */
+@media (max-width: 768px) {
+    body {
+        overflow-y: auto;
+        height: auto;
+        min-height: 100vh;
+    }
+}
+
+@media (max-width: 480px) {
+    body {
+        overflow-x: hidden;
+    }
+}
+.top-section {
+    flex: 3;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-image: 
-        linear-gradient(
-            to bottom,
-            #dcdcdc 50%,
-            #e9e9e9 50%
-        );
-    font-family: sans-serif;
+    position: relative;
+}
+
+/* Mobile top section */
+@media (max-width: 768px) {
+    .top-section {
+        flex: 2;
+        padding: 20px 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .top-section {
+        flex: 1;
+        padding: 15px 0;
+    }
+}
+.top-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.1) 0%,
+        rgba(0, 0, 0, 0.3) 100%
+    );
+    pointer-events: none;
+}
+.bottom-section {
+    flex: 1;
+    background: linear-gradient(
+        to bottom,
+        rgba(0, 0, 0, 0.7),
+        rgba(0, 0, 0, 0.8)
+    );
+    padding: 15px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.suggestions {
+    width: 100%;
+    max-width: 900px;
+    text-align: center;
+}
+.suggestions h3 {
+    margin-bottom: 15px;
+    color: #fff;
+    font-size: 1.2em;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+.city-suggestions {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 10px;
+}
+
+/* Mobile city suggestions */
+@media (max-width: 768px) {
+    .bottom-section {
+        padding: 10px 15px;
+    }
+    
+    .suggestions h3 {
+        font-size: 1em;
+        margin-bottom: 10px;
+    }
+    
+    .city-suggestions {
+        grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+        gap: 8px;
+    }
+    
+    .city-card {
+        padding: 8px 6px;
+        border-radius: 10px;
+    }
+    
+    .city-card h4 {
+        font-size: 12px;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+    .city-suggestions {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .city-card h4 {
+        font-size: 11px;
+    }
+}
+.city-card {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    padding: 12px 8px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.3);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+.city-card:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+}
+.city-card h4 {
+    margin: 0;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 600;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
 }
 *{
     padding: 0;
     margin: 0;
 }
 main{
-    width: 300px;
+    width: 90%;
+    max-width: 600px;
     height: max-content;
     min-height: 300px;
-    background-color: #f7f7f7;
+    background-color: rgba(255, 255, 255, 0.1);
     border-radius: 30px;
-    box-shadow: 0 30px 50px #5553;
-    padding: 30px;
+    box-shadow: 0 30px 50px rgba(0, 0, 0, 0.1);
+    padding: 40px;
     box-sizing: border-box;
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    main {
+        width: 95%;
+        padding: 20px;
+        border-radius: 20px;
+        min-height: auto;
+    }
 }
 main form{
-    border: 1px solid #5552;
+    border: 1px solid rgba(255, 255, 255, 0.3);
     display: flex;
-    border-radius: 30px;
+    border-radius: 25px;
     justify-content: space-between;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.2);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    backdrop-filter: blur(10px);
 }
-main form input, 
-main form button{
+main form input{
     border: none;
     background-color: transparent;
     outline: none;
-    padding: 10px;
+    padding: 15px 20px;
     box-sizing: border-box;
+    flex: 1;
+    font-size: 16px;
+    color: #fff;
+    font-weight: 500;
 }
-main form i{
-    opacity: 0.7;
+
+/* Mobile form adjustments */
+@media (max-width: 768px) {
+    main form input {
+        padding: 12px 15px;
+        font-size: 14px;
+    }
+    
+    main form button {
+        padding: 12px 15px;
+    }
+    
+    main form button i {
+        font-size: 14px;
+    }
+}
+main form input::placeholder{
+    color: rgba(255, 255, 255, 0.7);
+}
+main form button{
+    border: none;
+    background-color: rgba(74, 144, 226, 0.8);
+    outline: none;
+    padding: 15px 20px;
+    box-sizing: border-box;
+    border-radius: 0 25px 25px 0;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    backdrop-filter: blur(10px);
+}
+main form button:hover{
+    background-color: rgba(53, 122, 189, 0.9);
+}
+main form button i{
+    color: white;
+    font-size: 16px;
 }
 main .result{
-    padding-top: 20px;
+    padding-top: 30px;
     text-align: center;
 }
 main .result .name{
     font-weight: bold;
-    font-size: large;
+    font-size: 1.3em;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 10px;
+    gap: 15px;
+    margin-bottom: 20px;
+    color: #fff;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* Mobile result adjustments */
+@media (max-width: 768px) {
+    main .result .name {
+        font-size: 1.1em;
+        gap: 10px;
+        margin-bottom: 15px;
+    }
+    
+    main .temperature img {
+        width: 100px;
+    }
+    
+    main .temperature figcaption {
+        font-size: 2em;
+    }
+    
+    main .description {
+        font-size: 1em;
+        padding: 10px 0 20px;
+    }
+}
+main .temperature{
+    margin: 20px 0;
 }
 main .temperature img{
-    width: 150px;
-    filter: drop-shadow(0 10px 50px #555);
+    width: 120px;
+    filter: drop-shadow(0 10px 30px rgba(85, 85, 85, 0.3));
 }
 main .temperature figcaption{
-    font-size: 3em;
+    font-size: 2.5em;
+    font-weight: bold;
+    color: #fff;
+    margin-top: 10px;
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 main .description{
-    padding: 10px 0 30px;
+    padding: 15px 0 25px;
+    font-size: 1.1em;
+    color: rgba(255, 255, 255, 0.95);
+    text-transform: capitalize;
+    text-shadow: 
+        0 1px 2px rgba(0,0,0,0.8),
+        -1px -1px 0 rgba(0,0,0,0.5),
+        1px -1px 0 rgba(0,0,0,0.5),
+        -1px 1px 0 rgba(0,0,0,0.5),
+        1px 1px 0 rgba(0,0,0,0.5);
+    font-weight: 600;
 }
 main ul{
     list-style: none;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 10px;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* Mobile grid adjustments */
+@media (max-width: 768px) {
+    main ul {
+        gap: 10px;
+        margin-top: 15px;
+    }
+    
+    main li {
+        padding: 15px 10px;
+        font-size: 0.8em;
+    }
+    
+    main ul li i {
+        font-size: 1.5em;
+        margin: 15px 0;
+    }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+    main ul {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+    
+    main li {
+        padding: 12px 15px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        text-align: left;
+    }
+    
+    main ul li i {
+        font-size: 1.2em;
+        margin: 0;
+        order: 2;
+    }
+    
+    main li span:first-child {
+        order: 1;
+        flex: 1;
+    }
+    
+    main li span:last-child {
+        order: 3;
+        font-weight: bold;
+    }
 }
 main li{
     background-color: #f78a55;
     color: #fff;
-    border-radius: 10px;
-    padding: 20px 10px;
+    border-radius: 15px;
+    padding: 20px 15px;
     background-image: linear-gradient(
         to bottom,
         transparent 50%,
-        #0003 50%
+        rgba(0,0,0,0.2) 50%
     );
     font-weight: bold;
-    font-size: small;
+    font-size: 0.9em;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+main li:hover{
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+}
+
+/* Animation cho clouds */
+main li:nth-child(1) {
+    background: linear-gradient(135deg, #74b9ff, #0984e3);
+}
+main li:nth-child(1) i {
+    animation: cloudFloat 3s ease-in-out infinite;
+}
+
+/* Animation cho humidity */
+main li:nth-child(2) {
+    background: linear-gradient(135deg, #00cec9, #00b894);
+}
+main li:nth-child(2) i {
+    animation: dropBounce 2s ease-in-out infinite;
+}
+
+/* Animation cho pressure */
+main li:nth-child(3) {
+    background: linear-gradient(135deg, #6c5ce7, #a29bfe);
+}
+main li:nth-child(3) i {
+    animation: gaugeRotate 4s linear infinite;
 }
 main ul li i{
     font-size: 2em;
     margin: 20px 0;
     display: block!important;
-}
-main li:nth-child(2){
-    background-color: #b56291;
-}
-main li:nth-child(3){
-    background-color: #48567b;
 }
 main.error{
     animation: errorEffect 0.3s linear 1;
@@ -113,5 +424,99 @@ main.error{
     }
     100%{
         transform: translate(0, 0); 
+    }
+}
+
+/* Animation cho clouds - floating effect */
+@keyframes cloudFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-8px);
+    }
+}
+
+/* Animation cho humidity - water drop bounce */
+@keyframes dropBounce {
+    0%, 100% {
+        transform: translateY(0px) scale(1);
+    }
+    25% {
+        transform: translateY(-5px) scale(1.1);
+    }
+    50% {
+        transform: translateY(0px) scale(1);
+    }
+    75% {
+        transform: translateY(-3px) scale(1.05);
+    }
+}
+
+/* Animation cho pressure - gauge rotation */
+@keyframes gaugeRotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    25% {
+        transform: rotate(15deg);
+    }
+    50% {
+        transform: rotate(0deg);
+    }
+    75% {
+        transform: rotate(-15deg);
+    }
+    100% {
+        transform: rotate(0deg);
+    }
+}
+
+/* Weekly forecast styles */
+.weekly{
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    align-items: stretch;
+}
+.forecast-card{
+    background: rgba(255,255,255,0.12);
+    border-radius: 12px;
+    padding: 10px;
+    color: #fff;
+    text-align: center;
+    font-weight: 600;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.forecast-card img{
+    width: 64px;
+    height: 64px;
+    margin: 6px auto;
+}
+.forecast-day{
+    font-size: 0.9em;
+    margin-bottom: 6px;
+}
+.forecast-temp{
+    font-size: 1.05em;
+}
+
+@media (max-width: 900px) {
+    .weekly{
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+@media (max-width: 480px) {
+    .weekly{
+        grid-template-columns: repeat(2, 1fr);
+        gap: 8px;
+    }
+    .forecast-card img{
+        width: 48px;
+        height: 48px;
     }
 }
