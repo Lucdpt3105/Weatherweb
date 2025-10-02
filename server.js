@@ -34,20 +34,6 @@ app.get('/api/weather', async (req, res) => {
   }
 });
 
-// Proxy One Call (7-day forecast)
-app.get('/api/onecall', async (req, res) => {
-  const { lat, lon } = req.query;
-  if (!lat || !lon) return res.status(400).json({ error: 'missing lat or lon' });
-  try {
-    const url = `https://api.openweathermap.org/data/2.5/onecall`;
-    const resp = await axios.get(url, { params: { lat, lon, exclude: 'current,minutely,hourly,alerts', units: 'metric', appid: OPENWEATHER_KEY } });
-    res.json(resp.data);
-  } catch (err) {
-    const status = err.response?.status || 500;
-    res.status(status).json(err.response?.data || { error: err.message });
-  }
-});
-
 // Proxy Unsplash search
 app.get('/api/unsplash', async (req, res) => {
   const query = req.query.query;

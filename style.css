@@ -178,62 +178,166 @@ main{
     }
 }
 main form{
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    border: 2px solid rgba(255, 255, 255, 0.4);
     display: flex;
-    border-radius: 25px;
+    border-radius: 30px;
     justify-content: space-between;
     overflow: hidden;
-    background-color: rgba(255, 255, 255, 0.2);
-    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-    backdrop-filter: blur(10px);
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.3), rgba(255, 255, 255, 0.1));
+    box-shadow: 
+        0 8px 32px rgba(0, 0, 0, 0.3),
+        0 0 0 1px rgba(255, 255, 255, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    backdrop-filter: blur(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    margin-bottom: 20px;
+}
+
+main form:hover {
+    transform: translateY(-2px);
+    box-shadow: 
+        0 12px 40px rgba(0, 0, 0, 0.4),
+        0 0 0 1px rgba(255, 255, 255, 0.3),
+        0 0 20px rgba(74, 144, 226, 0.3),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+main form:focus-within {
+    transform: translateY(-3px);
+    border-color: rgba(74, 144, 226, 0.6);
+    box-shadow: 
+        0 15px 50px rgba(0, 0, 0, 0.5),
+        0 0 0 2px rgba(74, 144, 226, 0.4),
+        0 0 30px rgba(74, 144, 226, 0.5),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    animation: searchPulse 2s ease-in-out infinite;
+}
+
+@keyframes searchPulse {
+    0%, 100% {
+        box-shadow: 
+            0 15px 50px rgba(0, 0, 0, 0.5),
+            0 0 0 2px rgba(74, 144, 226, 0.4),
+            0 0 30px rgba(74, 144, 226, 0.5),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
+    50% {
+        box-shadow: 
+            0 15px 50px rgba(0, 0, 0, 0.5),
+            0 0 0 2px rgba(74, 144, 226, 0.6),
+            0 0 40px rgba(74, 144, 226, 0.7),
+            inset 0 1px 0 rgba(255, 255, 255, 0.6);
+    }
 }
 main form input{
     border: none;
     background-color: transparent;
     outline: none;
-    padding: 15px 20px;
+    padding: 18px 25px;
     box-sizing: border-box;
     flex: 1;
     font-size: 16px;
-    color: #fff;
+    color: #000000;
     font-weight: 500;
+    transition: all 0.3s ease;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+main form input:focus {
+    color: #000000;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
 }
 
 /* Mobile form adjustments */
 @media (max-width: 768px) {
+    main form {
+        border-radius: 25px;
+        margin-bottom: 15px;
+    }
+    
     main form input {
-        padding: 12px 15px;
+        padding: 15px 20px;
         font-size: 14px;
     }
     
     main form button {
-        padding: 12px 15px;
+        padding: 15px 20px;
+        border-radius: 0 23px 23px 0;
     }
     
     main form button i {
-        font-size: 14px;
+        font-size: 16px;
+    }
+    
+    main form:hover {
+        transform: translateY(-1px);
+    }
+    
+    main form:focus-within {
+        transform: translateY(-2px);
     }
 }
 main form input::placeholder{
-    color: rgba(255, 255, 255, 0.7);
+    color: rgba(0, 0, 0, 0.8);
+    font-weight: 400;
+    transition: all 0.3s ease;
+}
+
+main form input:focus::placeholder{
+    color: rgba(0, 0, 0, 0.6);
+    transform: translateX(5px);
 }
 main form button{
     border: none;
-    background-color: rgba(74, 144, 226, 0.8);
+    background: linear-gradient(135deg, rgba(74, 144, 226, 0.9), rgba(53, 122, 189, 1));
     outline: none;
-    padding: 15px 20px;
+    padding: 18px 25px;
     box-sizing: border-box;
-    border-radius: 0 25px 25px 0;
+    border-radius: 0 28px 28px 0;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     backdrop-filter: blur(10px);
+    position: relative;
+    overflow: hidden;
 }
+
+main form button::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s ease;
+}
+
 main form button:hover{
-    background-color: rgba(53, 122, 189, 0.9);
+    background: linear-gradient(135deg, rgba(53, 122, 189, 1), rgba(74, 144, 226, 1));
+    box-shadow: 
+        0 8px 25px rgba(53, 122, 189, 0.4),
+        inset 0 1px 0 rgba(255, 255, 255, 0.3);
+    transform: translateY(-1px);
+}
+
+main form button:hover::before {
+    left: 100%;
+}
+
+main form button:active {
+    transform: translateY(0);
 }
 main form button i{
     color: white;
-    font-size: 16px;
+    font-size: 18px;
+    transition: all 0.3s ease;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.3));
+}
+
+main form button:hover i {
+    transform: scale(1.1);
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.4));
 }
 main .result{
     padding-top: 30px;
@@ -469,54 +573,5 @@ main.error{
     }
     100% {
         transform: rotate(0deg);
-    }
-}
-
-/* Weekly forecast styles */
-.weekly{
-    margin-top: 20px;
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
-    gap: 10px;
-    align-items: stretch;
-}
-.forecast-card{
-    background: rgba(255,255,255,0.12);
-    border-radius: 12px;
-    padding: 10px;
-    color: #fff;
-    text-align: center;
-    font-weight: 600;
-    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-.forecast-card img{
-    width: 64px;
-    height: 64px;
-    margin: 6px auto;
-}
-.forecast-day{
-    font-size: 0.9em;
-    margin-bottom: 6px;
-}
-.forecast-temp{
-    font-size: 1.05em;
-}
-
-@media (max-width: 900px) {
-    .weekly{
-        grid-template-columns: repeat(4, 1fr);
-    }
-}
-@media (max-width: 480px) {
-    .weekly{
-        grid-template-columns: repeat(2, 1fr);
-        gap: 8px;
-    }
-    .forecast-card img{
-        width: 48px;
-        height: 48px;
     }
 }

@@ -1,6 +1,7 @@
-// Use proxy endpoints (server will hide API keys)
-let url = '/api/weather';
-let unsplashAccessKey = null; // key moved to server
+// API keys và URLs
+let id = 'bd5e378503939ddaee76f12ad7a97608'; // OpenWeather API key
+let url = 'https://api.openweathermap.org/data/2.5/weather?units=metric&appid=' + id;
+let unsplashAccessKey = 'cTc4zWX9M6xPNYHF0GaR91kP5BVRTYE3FZgMhR9fFXc'; // Unsplash API key
 let city = document.querySelector('.name');
 let form = document.querySelector("form");
 let temperature = document.querySelector('.temperature');
@@ -17,7 +18,7 @@ form.addEventListener("submit", (e) => {
     }
 });
 const searchWeather = () => {
-    fetch(url+'?q='+ encodeURIComponent(valueSearch.value))
+    fetch(url+'&q='+ encodeURIComponent(valueSearch.value))
         .then(response => response.json())
         .then(data => {
             console.log(data);
@@ -34,10 +35,6 @@ const searchWeather = () => {
                 
                 // Thêm background image của thành phố
                 updateCityBackground(data.name);
-                // Lấy lat/lon: fetch 7-day forecast (One Call API)
-                if (data.coord?.lat && data.coord?.lon) {
-                    fetchWeeklyForecast(data.coord.lat, data.coord.lon);
-                }
             }else{
                 main.classList.add('error');
                 setTimeout(() => {
@@ -47,52 +44,12 @@ const searchWeather = () => {
             valueSearch.value = '';
         })
 }
-// Fetch 7-day forecast using One Call API and render into #weeklyForecast
-const fetchWeeklyForecast = (lat, lon) => {
-    // Use proxy endpoint for One Call
-    const oneCallUrl = `/api/onecall?lat=${encodeURIComponent(lat)}&lon=${encodeURIComponent(lon)}`;
-    fetch(oneCallUrl)
-        .then(res => res.json())
-        .then(forecast => {
-            renderWeeklyForecast(forecast.daily || []);
-        })
-        .catch(err => {
-            console.log('Lỗi khi lấy forecast:', err);
-        });
-}
-
-const renderWeeklyForecast = (daily) => {
-    const container = document.getElementById('weeklyForecast');
-    container.innerHTML = '';
-    // Show up to 7 days
-    const daysToShow = daily.slice(0, 7);
-    const weekdayNames = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
-
-    daysToShow.forEach(day => {
-        const date = new Date(day.dt * 1000);
-        const dayName = weekdayNames[date.getDay()];
-        const icon = day.weather?.[0]?.icon ?? '01d';
-        const desc = day.weather?.[0]?.description ?? '';
-        const min = Math.round(day.temp.min);
-        const max = Math.round(day.temp.max);
-
-        const card = document.createElement('div');
-        card.className = 'forecast-card';
-        card.innerHTML = `
-            <div class="forecast-day">${dayName}</div>
-            <img src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="${desc}">
-            <div class="forecast-temp">${max}° / <span style="opacity:0.8">${min}°</span></div>
-            <div style="font-size:0.85em; opacity:0.9; margin-top:6px; text-transform:capitalize">${desc}</div>
-        `;
-
-        container.appendChild(card);
-    });
-}
 
 // Hàm để cập nhật background image
 const updateCityBackground = (cityName) => {
     // Sử dụng Unsplash API với access key để lấy ảnh chất lượng cao
-    const unsplashApiUrl = `/api/unsplash?query=${encodeURIComponent(cityName + ' city')}`;
+    const unsplashApiUrl = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(cityName + ' city')}&orientation=landscape&per_page=1&client_id=${unsplashAccessKey}`;
+    
     fetch(unsplashApiUrl)
         .then(response => response.json())
         .then(data => {
