@@ -24,7 +24,7 @@ const searchWeather = () => {
             if(data.cod == 200){
                 city.querySelector('figcaption').innerHTML = data.name;
                 city.querySelector('img').src = `https://flagsapi.com/${data.sys.country}/shiny/32.png`;
-                temperature.querySelector('img').src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@4x.png`;
+                temperature.querySelector('img').src = `/icon/${data.weather[0].icon}`;
                 temperature.querySelector('span').innerText = data.main.temp;
                 description.innerText = data.weather[0].description;
 

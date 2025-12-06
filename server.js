@@ -42,31 +42,32 @@ app.get('/api/weather', async (req, res) => {
       params: {
         latitude,
         longitude,
-        current: 'temperature_2m,relative_humidity_2m,weather_code,surface_pressure,cloud_cover',
+        current: 'temperature_2m,relative_humidity_2m,weather_code,surface_pressure,cloud_cover,is_day',
         timezone: 'auto'
       }
     });
     
     const current = weatherResp.data.current;
     
-    // Map weather codes to descriptions
+    // Map weather codes to custom icon filenames (day/night aware)
+    const isNight = current.is_day === 0;
     const weatherCodeMap = {
-      0: { description: 'Clear sky', icon: '01d' },
-      1: { description: 'Mainly clear', icon: '02d' },
-      2: { description: 'Partly cloudy', icon: '03d' },
-      3: { description: 'Overcast', icon: '04d' },
-      45: { description: 'Foggy', icon: '50d' },
-      48: { description: 'Depositing rime fog', icon: '50d' },
-      51: { description: 'Light drizzle', icon: '09d' },
-      53: { description: 'Moderate drizzle', icon: '09d' },
-      55: { description: 'Dense drizzle', icon: '09d' },
-      61: { description: 'Slight rain', icon: '10d' },
-      63: { description: 'Moderate rain', icon: '10d' },
-      65: { description: 'Heavy rain', icon: '10d' },
-      71: { description: 'Slight snow', icon: '13d' },
-      73: { description: 'Moderate snow', icon: '13d' },
-      75: { description: 'Heavy snow', icon: '13d' },
-      95: { description: 'Thunderstorm', icon: '11d' }
+      0: { description: 'Clear sky', icon: isNight ? 'clear-night.svg' : 'clear-day.svg' },
+      1: { description: 'Mainly clear', icon: isNight ? 'partly-cloudy-night.svg' : 'partly-cloudy-day.svg' },
+      2: { description: 'Partly cloudy', icon: isNight ? 'partly-cloudy-night.svg' : 'partly-cloudy-day.svg' },
+      3: { description: 'Overcast', icon: 'cloudy.svg' },
+      45: { description: 'Foggy', icon: 'cloudy.svg' },
+      48: { description: 'Depositing rime fog', icon: 'cloudy.svg' },
+      51: { description: 'Light drizzle', icon: isNight ? 'night-rain.svg' : 'rain.svg' },
+      53: { description: 'Moderate drizzle', icon: isNight ? 'night-rain.svg' : 'rain.svg' },
+      55: { description: 'Dense drizzle', icon: isNight ? 'night-rain.svg' : 'rain.svg' },
+      61: { description: 'Slight rain', icon: isNight ? 'night-rain.svg' : 'rain.svg' },
+      63: { description: 'Moderate rain', icon: isNight ? 'night-rain.svg' : 'rain.svg' },
+      65: { description: 'Heavy rain', icon: isNight ? 'night-rain.svg' : 'rain-heavy.svg' },
+      71: { description: 'Slight snow', icon: isNight ? 'night-snow.svg' : 'snow.svg' },
+      73: { description: 'Moderate snow', icon: isNight ? 'night-snow.svg' : 'snow.svg' },
+      75: { description: 'Heavy snow', icon: isNight ? 'night-snow.svg' : 'snow.svg' },
+      95: { description: 'Thunderstorm', icon: isNight ? 'night-storm.svg' : 'thunderstorm.svg' }
     };
     
     const weatherInfo = weatherCodeMap[current.weather_code] || { description: 'Unknown', icon: '01d' };
