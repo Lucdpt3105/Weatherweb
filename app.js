@@ -1,7 +1,6 @@
-// API keys và URLs
-let id = 'bd5e378503939ddaee76f12ad7a97608'; // OpenWeather API key
-let url = 'https://api.openweathermap.org/data/2.5/weather?units=metric&appid=' + id;
-let unsplashAccessKey = 'cTc4zWX9M6xPNYHF0GaR91kP5BVRTYE3FZgMhR9fFXc'; // Unsplash API key
+// Use proxy endpoints (API keys hidden in server)
+let url = '/api/weather';
+let unsplashAccessKey = null; // key is in server
 let city = document.querySelector('.name');
 let form = document.querySelector("form");
 let temperature = document.querySelector('.temperature');
@@ -18,7 +17,7 @@ form.addEventListener("submit", (e) => {
     }
 });
 const searchWeather = () => {
-    fetch(url+'&q='+ encodeURIComponent(valueSearch.value))
+    fetch(url+'?q='+ encodeURIComponent(valueSearch.value))
         .then(response => response.json())
         .then(data => {
             console.log(data);
@@ -48,7 +47,7 @@ const searchWeather = () => {
 // Hàm để cập nhật background image
 const updateCityBackground = (cityName) => {
     // Sử dụng Unsplash API với access key để lấy ảnh chất lượng cao
-    const unsplashApiUrl = `https://api.unsplash.com/search/photos?query=${encodeURIComponent(cityName + ' city')}&orientation=landscape&per_page=1&client_id=${unsplashAccessKey}`;
+    const unsplashApiUrl = `/api/unsplash?query=${encodeURIComponent(cityName + ' city')}`;
     
     fetch(unsplashApiUrl)
         .then(response => response.json())

@@ -48,4 +48,10 @@ app.get('/api/unsplash', async (req, res) => {
   }
 });
 
-app.listen(PORT, () => console.log(`Proxy server listening on http://localhost:${PORT}`));
+// Listen khi chạy local
+if (require.main === module) {
+  app.listen(PORT, () => console.log(`Proxy server listening on http://localhost:${PORT}`));
+}
+
+// Export cho Vercel serverless
+module.exports = app;
