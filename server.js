@@ -34,7 +34,7 @@ app.get('/api/weather', async (req, res) => {
     }
     
     const location = geoResp.data.results[0];
-    const { latitude, longitude, name, country } = location;
+    const { latitude, longitude, name, country, country_code } = location;
     
     // Get weather data
     const weatherUrl = `https://api.open-meteo.com/v1/forecast`;
@@ -86,7 +86,7 @@ app.get('/api/weather', async (req, res) => {
         pressure: current.surface_pressure
       },
       clouds: { all: current.cloud_cover },
-      sys: { country: country },
+      sys: { country: country_code || country },
       name: name,
       cod: 200
     };
