@@ -24,11 +24,15 @@
       "dest": "/server.js"
     },
     {
+      "src": "/icon/(.*)",
+      "dest": "/icon/$1"
+    },
+    {
       "src": "/",
       "dest": "/index.html"
     },
     {
-      "src": "/(.*\\.(css|js|html))",
+      "src": "/(.*\\.(css|js|html|svg|png|jpg|jpeg|gif|ico))",
       "dest": "/$1"
     }
   ]
