@@ -1,14 +1,12 @@
 {
   "rewrites": [
     {
-      "source": "/api/(.*)",
+      "source": "/api/weather",
+      "destination": "/api/server"
+    },
+    {
+      "source": "/api/unsplash",
       "destination": "/api/server"
     }
-  ],
-  "functions": {
-    "api/server.js": {
-      "memory": 1024,
-      "maxDuration": 10
-    }
-  }
+  ]
 }
