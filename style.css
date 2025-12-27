@@ -575,3 +575,35 @@ main.error{
         transform: rotate(0deg);
     }
 }
+
+/* Remove glass / backdrop blur on mobile to avoid overlaying content */
+@media (max-width: 768px) {
+    main,
+    main form,
+    main form button,
+    .city-card,
+    .city-card:hover,
+    .back-btn,
+    .filter-btn,
+    .news-badge,
+    .topic-tag,
+    .topic-tags,
+    .top-section::before,
+    .bottom-section {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+    }
+
+    /* Override inline-styled anchors (e.g. the 'Tin tức' link in index.html) */
+    .suggestions a[style] {
+        backdrop-filter: none !important;
+        -webkit-backdrop-filter: none !important;
+        background: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        color: inherit !important;
+    }
+}

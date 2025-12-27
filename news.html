@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>📰 Tin Tức & Sự Kiện - Weather News</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="news-style.css">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+</head>
+<body>
+    <div class="top-section news-section">
+        <main class="news-main">
+            <div class="news-header">
+                <h1>
+                    <i class="fa-solid fa-newspaper"></i>
+                    Tin Tức & Sự Kiện
+                </h1>
+                <p class="subtitle">Cập nhật thông tin thời tiết và khí hậu mới nhất</p>
+                <a href="index.html" class="back-btn">
+                    <i class="fa-solid fa-arrow-left"></i> Về trang chủ
+                </a>
+            </div>
+
+            <!-- News Categories Filter -->
+            <div class="news-filter">
+                <button class="filter-btn active" data-category="all">
+                    <i class="fa-solid fa-globe"></i> Tất cả
+                </button>
+                <button class="filter-btn" data-category="weather">
+                    <i class="fa-solid fa-cloud-sun"></i> Thời tiết
+                </button>
+                <button class="filter-btn" data-category="climate">
+                    <i class="fa-solid fa-temperature-half"></i> Khí hậu
+                </button>
+                <button class="filter-btn" data-category="event">
+                    <i class="fa-solid fa-calendar"></i> Sự kiện
+                </button>
+            </div>
+
+            <!-- News Grid -->
+            <div class="news-grid" id="newsGrid">
+                <!-- Breaking News -->
+                <article class="news-card featured" data-category="weather">
+                    <div class="news-badge breaking">
+                        <i class="fa-solid fa-bolt"></i> Tin nóng
+                    </div>
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1561553543-4e08751c2c9b?w=800" alt="Storm Warning">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category weather">
+                            <i class="fa-solid fa-cloud-bolt"></i> Cảnh báo
+                        </span>
+                        <h3>Bão nhiệt đới mạnh đang tiến vào Biển Đông</h3>
+                        <p class="news-excerpt">Cơ quan khí tượng cảnh báo một cơn bão mạnh cấp 10 đang di chuyển vào khu vực Biển Đông và dự kiến đổ bộ vào các tỉnh miền Trung trong 48 giờ tới...</p>
+                        <div class="news-meta">
+                            <span><i class="fa-regular fa-clock"></i> 2 giờ trước</span>
+                            <span><i class="fa-regular fa-user"></i> Admin</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Regular News Cards -->
+                <article class="news-card" data-category="climate">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1601590668275-7512b97967b9?w=600" alt="Climate Change">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category climate">
+                            <i class="fa-solid fa-earth-asia"></i> Khí hậu
+                        </span>
+                        <h3>Biến đổi khí hậu: Nhiệt độ toàn cầu tăng kỷ lục</h3>
+                        <p class="news-excerpt">Báo cáo mới nhất từ WMO cho thấy nhiệt độ trung bình toàn cầu năm 2024 đã vượt mức 1.5°C so với thời kỳ tiền công nghiệp...</p>
+                        <div class="news-meta">
+                            <span><i class="fa-regular fa-clock"></i> 5 giờ trước</span>
+                            <span><i class="fa-regular fa-user"></i> Nguyễn Văn A</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card" data-category="event">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600" alt="Weather Conference">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category event">
+                            <i class="fa-solid fa-users"></i> Sự kiện
+                        </span>
+                        <h3>Hội nghị Quốc tế về Biến đổi Khí hậu COP29</h3>
+                        <p class="news-excerpt">Hội nghị thượng đỉnh khí hậu COP29 sẽ diễn ra tại Baku, Azerbaijan từ ngày 11-22/11/2024 với sự tham gia của hơn 190 quốc gia...</p>
+                        <div class="news-meta">
+                            <span><i class="fa-regular fa-clock"></i> 1 ngày trước</span>
+                            <span><i class="fa-regular fa-user"></i> Trần Thị B</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card" data-category="weather">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1527482937786-6608cd7a03eb?w=600" alt="Monsoon Season">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category weather">
+                            <i class="fa-solid fa-cloud-rain"></i> Thời tiết
+                        </span>
+                        <h3>Mùa mưa bão 2024: Dự báo và chuẩn bị</h3>
+                        <p class="news-excerpt">Chuyên gia khí tượng dự báo mùa mưa bão năm nay sẽ có cường độ mạnh hơn trung bình, với khoảng 10-12 cơn bão và áp thấp nhiệt đới...</p>
+                        <div class="news-meta">
+                            <span><i class="fa-regular fa-clock"></i> 2 ngày trước</span>
+                            <span><i class="fa-regular fa-user"></i> Lê Văn C</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card" data-category="climate">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1569163139394-de4798aa62b6?w=600" alt="Renewable Energy">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category climate">
+                            <i class="fa-solid fa-leaf"></i> Môi trường
+                        </span>
+                        <h3>Năng lượng tái tạo: Giải pháp cho khí hậu bền vững</h3>
+                        <p class="news-excerpt">Việt Nam đặt mục tiêu đạt 47% năng lượng tái tạo trong tổng sản lượng điện vào năm 2030, góp phần giảm phát thải khí nhà kính...</p>
+                        <div class="news-meta">
+                            <span><i class="fa-regular fa-clock"></i> 3 ngày trước</span>
+                            <span><i class="fa-regular fa-user"></i> Phạm Thị D</span>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="news-card" data-category="event">
+                    <div class="news-image">
+                        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=600" alt="Weather Workshop">
+                    </div>
+                    <div class="news-content">
+                        <span class="news-category event">
+                            <i class="fa-solid fa-graduation-cap"></i> Đào tạo
+                        </span>
+                        <h3>Workshop: Công nghệ dự báo thời tiết hiện đại</h3>
+                        <p class="news-excerpt">Viện Khí tượng Thủy văn tổ chức workshop về ứng dụng AI và Machine Learning trong dự báo thời tiết vào ngày 15/12/2024...</p>
+                        <div class="news-meta">
+                            <span><i class="fa-regular fa-clock"></i> 4 ngày trước</span>
+                            <span><i class="fa-regular fa-user"></i> Hoàng Văn E</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </main>
+    </div>
+
+    <div class="bottom-section">
+        <div class="suggestions">
+            <h3>📌 Chủ đề phổ biến</h3>
+            <div class="topic-tags">
+                <a href="#" class="topic-tag"><i class="fa-solid fa-hashtag"></i> Bão nhiệt đới</a>
+                <a href="#" class="topic-tag"><i class="fa-solid fa-hashtag"></i> Biến đổi khí hậu</a>
+                <a href="#" class="topic-tag"><i class="fa-solid fa-hashtag"></i> Nắng nóng</a>
+                <a href="#" class="topic-tag"><i class="fa-solid fa-hashtag"></i> Mưa lũ</a>
+                <a href="#" class="topic-tag"><i class="fa-solid fa-hashtag"></i> Hạn hán</a>
+                <a href="#" class="topic-tag"><i class="fa-solid fa-hashtag"></i> COP29</a>
+            </div>
+        </div>
+    </div>
+
+    <script src="news.js"></script>
+</body>
+</html>

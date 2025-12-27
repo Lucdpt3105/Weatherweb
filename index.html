@@ -6,7 +6,7 @@
     <title> Dự báo thời tiết</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="style.css">
-    <link rel="icon" type="image/svg" href="Frame 27.svg">
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
 
 </head>
 <body>
@@ -56,7 +56,12 @@
     
     <div class="bottom-section">
         <div class="suggestions">
-            <h3>🏙️ View other cities'weather 🌦️</h3>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 15px;">
+                <h3 style="margin: 0;">🏙️ View other cities'weather 🌦️</h3>
+                <a href="news.html" style="color: #fff; text-decoration: none; background: rgba(255,255,255,0.2); padding: 8px 16px; border-radius: 20px; font-size: 0.9em; transition: all 0.3s ease; backdrop-filter: blur(10px);">
+                    <i class="fa-solid fa-newspaper"></i> Tin tức
+                </a>
+            </div>
             <div class="city-suggestions" id="citySuggestions">
                 <!-- Các thành phố gợi ý sẽ được thêm vào đây bằng JavaScript -->
             </div>

@@ -10,6 +10,29 @@ let clouds = document.getElementById('clouds');
 let humidity = document.getElementById('humidity');
 let pressure = document.getElementById('pressure');
 let main = document.querySelector('main');
+
+// Map OpenWeatherMap icon codes to local icon filenames
+const iconMapping = {
+    '01d': 'clear-day.svg',
+    '01n': 'clear-night.svg',
+    '02d': 'partly-cloudy-day.svg',
+    '02n': 'partly-cloudy-night.svg',
+    '03d': 'cloudy.svg',
+    '03n': 'night-cloudy.svg',
+    '04d': 'cloudy.svg',
+    '04n': 'night-cloudy.svg',
+    '09d': 'rain-heavy.svg',
+    '09n': 'night-rain.svg',
+    '10d': 'rain.svg',
+    '10n': 'night-rain.svg',
+    '11d': 'thunderstorm.svg',
+    '11n': 'night-storm.svg',
+    '13d': 'snow.svg',
+    '13n': 'night-snow.svg',
+    '50d': 'cloudy.svg',
+    '50n': 'night-cloudy.svg'
+};
+
 form.addEventListener("submit", (e) => {
     e.preventDefault();  
     if(valueSearch.value != ''){
@@ -24,7 +47,12 @@ const searchWeather = () => {
             if(data.cod == 200){
                 city.querySelector('figcaption').innerHTML = data.name;
                 city.querySelector('img').src = `https://flagsapi.com/${data.sys.country}/shiny/32.png`;
-                temperature.querySelector('img').src = `/icon/${data.weather[0].icon}`;
+                
+                // Map weather icon code to local icon filename
+                const iconCode = data.weather[0].icon;
+                const iconFile = iconMapping[iconCode] || 'cloudy.svg'; // fallback to cloudy
+                temperature.querySelector('img').src = `/icon/${iconFile}`;
+                
                 temperature.querySelector('span').innerText = data.main.temp;
                 description.innerText = data.weather[0].description;
 
