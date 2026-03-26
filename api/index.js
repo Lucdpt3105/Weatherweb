@@ -1,14 +1,14 @@
 const express = require('express');
 const axios = require('axios');
 const cors = require('cors');
+const path = require('path');
 require('dotenv').config();
 
 const app = express();
-const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 // Serve static client files from project root
-app.use(express.static(__dirname));
+app.use(express.static(path.join(__dirname, '..')));
 
 const OPENWEATHER_KEY = process.env.OPENWEATHER_API_KEY;
 const UNSPLASH_KEY = process.env.UNSPLASH_ACCESS_KEY;
@@ -114,10 +114,5 @@ app.get('/api/unsplash', async (req, res) => {
   }
 });
 
-// Listen khi chạy local
-if (require.main === module) {
-  app.listen(PORT, () => console.log(`Proxy server listening on http://localhost:${PORT}`));
-}
-
-// Export cho Vercel serverless
+// Export cho Vercel serverless - Vercel sẽ gọi nó như handler
 module.exports = app;
