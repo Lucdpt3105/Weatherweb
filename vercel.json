@@ -1,12 +1,18 @@
 {
-  "rewrites": [
+  "builds": [
     {
-      "source": "/api/weather",
-      "destination": "/api/server"
+      "src": "server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/api/server.js"
     },
     {
-      "source": "/api/unsplash",
-      "destination": "/api/server"
+      "src": "/(.*)",
+      "dest": "/server.js"
     }
   ]
 }
